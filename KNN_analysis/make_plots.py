@@ -23,6 +23,7 @@ def main():
 
     plt.savefig('plots/50_mv_avg.png')
 
+
     return
 
 if __name__ == '__main__':
