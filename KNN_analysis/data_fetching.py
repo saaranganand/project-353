@@ -6,7 +6,7 @@ import sys
 from datetime import datetime as dt, timedelta
 
 TICKER = "VFV.TO"  # Vanguard S&P 500 Index ETF
-START_DATE = "2017-01-01"
+START_DATE = "2010-01-01"
 
 day_adjustment = 50
 
