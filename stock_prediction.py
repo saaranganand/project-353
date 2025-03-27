@@ -6,9 +6,10 @@ import seaborn as sns
 from datetime import datetime, timedelta
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense
 from tensorflow.keras.optimizers import Adam
 from sklearn.metrics import mean_squared_error
+from tensorflow.keras.layers import Input, LSTM, Dense
+
 
 sns.set_style('whitegrid')
 plt.style.use("fivethirtyeight")
@@ -45,14 +46,26 @@ def create_sequences(dataset, window_size=60):
 
 def build_lstm(window_size=60):
     """
-    Builds and compiles a simple LSTM model.
+    Builds and compiles a simple LSTM model using the last 60 days data to 
+    foracst the next days price of VFV.TO
     """
+    # The model we are using is sequential Model
     model = Sequential()
-    model.add(LSTM(50, return_sequences=True, input_shape=(window_size, 1)))
+
+    #The input shape is (window_size, 1) where 'window_size' is the number of time steps,
+    model.add(Input(shape=(window_size, 1)))
+
+    # This layer processes the sequential data and captures temporal dependencies.
     model.add(LSTM(50))
+
+    # Add a Dense (fully connected) layer with 1 neuron, this layer predicts the final prediction
     model.add(Dense(1))
+
+    # Compile the model using the Adam optimizer and mean squared error (MSE) loss.
+    # MSE is commonly used for regression tasks such as predicting a continuous value.
     model.compile(optimizer=Adam(learning_rate=0.001), loss='mean_squared_error')
     return model
+
 
 # -------------------------------
 # DATA SCALING
@@ -63,7 +76,7 @@ scaled_values = scaler.fit_transform(data.values)
 # -------------------------------
 # WALK-FORWARD SPLIT SETUP
 # -------------------------------
-# We set an initial training window and a fixed validation window (e.g., 6 months).
+# We set an initial training window and a fixed validation window of 6 months
 # Then we expand the training set after each fold.
 initial_train_end = '2020-12-31'   # initial training ends at 2020-12-31
 val_size_days = 180                # ~6 months of validation
@@ -194,4 +207,6 @@ plt.legend()
 plt.savefig("Final_LSTM_Forecast.png")
 plt.show()
 
+final_price_2025 = future_forecast[-1][0]
+print(f"Forecasted price on 2025-12-31: {final_price_2025:.2f} CAD")
 print("✅ Walk-forward validation and final forecast complete.")
