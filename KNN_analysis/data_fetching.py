@@ -6,22 +6,25 @@ import sys
 from datetime import datetime as dt, timedelta
 
 TICKER = "VFV.TO"  # Vanguard S&P 500 Index ETF
-START_DATE = "2010-01-01"
+START_DATE = "2019-01-01"
+date_format = "%m/%d/%Y"
 
-day_adjustment = 50
+
+end_date = dt.strptime('12/31/2025', date_format)
+current_day = dt.now()
+day_adjustment = end_date - current_day
+
 
 def adjust_days(start_date, num_days_before):
-
     start_date_obj = dt.strptime(start_date, "%Y-%m-%d")
 
-    adjusted_date = start_date_obj - timedelta(days=num_days_before + 30) # Offset by 30 to account for days where no trading was dome
+    adjusted_date = start_date_obj - timedelta(days=num_days_before)
 
     return adjusted_date.strftime("%Y-%m-%d")
 
 
 def find_growth_rate(x):
-
-    if x['future_close'].values >= x['Close'].values * 1.05:
+    if x['future_close'].values >= x['Close'].values * 1.10:
 
         return "Yes"
 
@@ -31,14 +34,13 @@ def find_growth_rate(x):
 
 
 def process_data(data):
-
     data = data.copy()
 
     data['50_day_ma'] = data['Close'].rolling(window=50).mean()
 
     data['daily_return'] = data['Close'].pct_change(1)
 
-    data['future_close'] = data['Close'].shift(-day_adjustment)
+    data['future_close'] = data['Close'].shift(-day_adjustment.days)
 
     data = data[data.index >= dt.strptime(START_DATE, "%Y-%m-%d")]
 
@@ -49,9 +51,9 @@ def process_data(data):
 
     return data
 
-def main():
 
-    data = yf.download(TICKER, start=adjust_days(START_DATE, day_adjustment), end=dt.now().strftime("%Y-%m-%d"))
+def main():
+    data = yf.download(TICKER, start=adjust_days(START_DATE, day_adjustment.days), end=current_day.strftime('%Y-%m-%d'))
 
     return (process_data(data))
 

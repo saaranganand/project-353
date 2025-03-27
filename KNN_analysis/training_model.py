@@ -22,7 +22,7 @@ def main():
 
     balanced_Data = pd.concat([yes_data, no_data], ignore_index=True)
 
-    X = balanced_Data.drop(columns=['growth_rate', 'future_close', '50_day_ma', 'daily_return'])
+    X = balanced_Data.drop(columns=['growth_rate', 'future_close'])
 
     X = X.reset_index(drop=True)
 
