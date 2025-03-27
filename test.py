@@ -38,5 +38,5 @@ else:
     print(data.head())
 
     # Save to CSV (optional)
-    data.to_csv(f"{ticker}_2019_Present_data.csv")
-    print(f"✅ Data saved as '{ticker}_2019-Present_data.csv'.")
+    data.to_csv("data.csv")
+    print(f"✅ Data saved as 'data.csv'")
