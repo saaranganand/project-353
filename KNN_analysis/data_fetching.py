@@ -19,7 +19,6 @@ def adjust_days(start_date, num_days_before):
     start_date_obj = dt.strptime(start_date, "%Y-%m-%d")
 
     adjusted_date = start_date_obj - timedelta(days=num_days_before)
-
     return adjusted_date.strftime("%Y-%m-%d")
 
 
@@ -35,8 +34,7 @@ def find_growth_rate(x):
 
 def process_data(data):
     data = data.copy()
-
-    data['50_day_ma'] = data['Close'].rolling(window=50).mean()
+    #data['50_day_ma'] = data['Close'].rolling(window=50).mean()
 
     data['daily_return'] = data['Close'].pct_change(1)
 
@@ -53,8 +51,7 @@ def process_data(data):
 
 
 def main():
-    data = yf.download(TICKER, start=adjust_days(START_DATE, day_adjustment.days), end=current_day.strftime('%Y-%m-%d'))
-
+    data = yf.download(TICKER, start=START_DATE, end=current_day.strftime('%Y-%m-%d'))
     return (process_data(data))
 
 
