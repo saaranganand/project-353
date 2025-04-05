@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import sys
 from datetime import datetime as dt, timedelta
 
-TICKER = "VFV.TO"  # Vanguard S&P 500 Index ETF
+# TICKER = "VFV.TO"  # Vanguard S&P 500 Index ETF
+
 START_DATE = "2019-01-01"
 date_format = "%m/%d/%Y"
 
@@ -34,24 +35,37 @@ def find_growth_rate(x):
 
 def process_data(data):
     data = data.copy()
-    #data['50_day_ma'] = data['Close'].rolling(window=50).mean()
 
+    # Rename and format columns
+    # data.columns = data.iloc[1]
+    # data = data.iloc[2:].reset_index(drop=True)
+
+    print(data)
+    # Convert date and close price columns to correct formats
+    # data['Date'] = pd.to_datetime(data['Date'])
+    data['Close'] = pd.to_numeric(data['Close'], errors='coerce')
+
+    # data.set_index('Date', inplace=True)
+
+    # Calculate daily return
     data['daily_return'] = data['Close'].pct_change(1)
 
+    # Shift close price for future close
     data['future_close'] = data['Close'].shift(-day_adjustment.days)
 
-    data = data[data.index >= dt.strptime(START_DATE, "%Y-%m-%d")]
+    data = data[data.index >= pd.to_datetime(START_DATE)]
 
-    data.dropna(inplace=True)
+    data.dropna(subset=['Close', 'future_close'], inplace=True)
 
-    # 'Yes' if there is a 10% increase or more, 'No' if not
+    # Check for 10% growth
     data['growth_rate'] = data.apply(find_growth_rate, axis=1)
 
     return data
 
 
 def main():
-    data = yf.download(TICKER, start=START_DATE, end=current_day.strftime('%Y-%m-%d'))
+    # data = yf.download(TICKER, start=START_DATE, end=current_day.strftime('%Y-%m-%d'))
+    data = pd.read_csv('../data.csv', index_col=0, parse_dates=True)
     return (process_data(data))
 
 
