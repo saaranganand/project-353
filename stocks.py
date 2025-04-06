@@ -71,3 +71,4 @@ else:
     plt.ylabel("Volatility (Std Dev of Daily Return)")
     plt.legend()
     plt.savefig("Volatility.png")
+    plt.show()
