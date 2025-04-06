@@ -18,13 +18,13 @@ def main():
     no_data = data[data['growth_rate'] == 'No']
     yes_data = data[data['growth_rate'] == 'Yes'].sample(n=no_data.shape[0])
 
-    print(len(yes_data), len(no_data))
-    print(list(data.columns))
     balanced_Data = pd.concat([yes_data, no_data], ignore_index=True)
     X = balanced_Data.drop(columns=['growth_rate', 'future_close'])
 
     # Do not count dates for the prediction
     X = X.reset_index(drop=True)
+
+    X = X.dropna()
 
     y = balanced_Data['growth_rate'].values
 
