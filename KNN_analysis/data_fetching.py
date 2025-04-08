@@ -1,6 +1,4 @@
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from datetime import datetime as dt, timedelta
 
 START_DATE = "2019-01-01"
