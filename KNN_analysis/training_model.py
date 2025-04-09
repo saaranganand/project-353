@@ -5,7 +5,10 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, ConfusionMatrixDisplay, \
     classification_report, root_mean_squared_error
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
 import data_fetching
+from KNN_analysis import process_forecast_data
 from KNN_analysis.knn_classifier import KNN_classifier
 from KNN_analysis.knn_regression import KNN_regression
 
@@ -53,12 +56,12 @@ def main():
 
     y_values = balanced_Data['future_close'].values
 
-    X_train, X_valid, y_train, y_valid = train_test_split(X, y_values, test_size=0.2)
+    X_train, X_valid, y_train, y_valid = train_test_split(X, y_values, test_size=0.2, shuffle=True)
 
     X_training = X_train.reset_index(drop=True)
     X_validation = X_valid.reset_index(drop=True)
 
-    y_pred = KNN_regression(X_training, X_validation, y_train, y_valid)
+    y_pred, knn_regressor = KNN_regression(X_training, X_validation, y_train, y_valid)
 
     max = y_valid.max()
     min = y_valid.min()
@@ -68,12 +71,53 @@ def main():
     print(f"The normalized root mean square error is: {rmse}")
     plt.figure(figsize=(10,5))
 
-    plt.plot(X_valid.index, y_valid, 'b.', label='Actual Future Close')
-    plt.plot(X_valid.index, y_pred, 'r.', label='Predicted Future Close')
+    df_plot = pd.DataFrame({
+        'actual': y_valid,
+        'predicted': y_pred
+    }, index=X_valid.index)
+
+    # Sort by index (e.g., date)
+    df_plot = df_plot.sort_index()
+
+    plt.plot(df_plot.index, df_plot['actual'], 'b.', label='Actual')
+    plt.plot(df_plot.index, df_plot['predicted'], 'r.', label='Predicted')
     plt.xlabel('Date')
+
     plt.ylabel('Future Close')
     plt.legend(loc='best')
-    plt.savefig("plots/knn_validation.png")
+    plt.savefig("plots/knn_validation_test.png")
+
+    forecast_data = process_forcast_data.main()
+
+    forecast_data_no_date = forecast_data.reset_index(drop=True)
+    # print(forecast_data)
+    ss = StandardScaler()
+
+    forecast_data_no_date = ss.fit_transform(forecast_data_no_date)
+    future_forcast = knn_regressor.predict(forecast_data_no_date)
+
+    print(future_forcast)
+
+    # Use regressor to forecast future data from 2024-04-28 - 2025-03-26, the prediction at 2025-03-26 is the predicted
+    # closing price by the end of 2025
+
+    plt.figure(figsize=(10,5))
+
+    df_plot = pd.DataFrame({
+        'predicted': future_forcast
+    }, index=forecast_data.index)
+
+    # Sort by index (e.g., date)
+    df_plot = df_plot.sort_index()
+
+    plt.plot(df_plot.index, df_plot['predicted'], 'r.', label='Predicted')
+    plt.xlabel('Date')
+
+    plt.ylabel('Future Close')
+    plt.legend(loc='best')
+    plt.savefig("plots/knn_prediction.png")
+
+
 
 if __name__ == '__main__':
     sys.exit(main())
