@@ -71,7 +71,7 @@ To get the code up and running, follow these steps:
 
 ---
 
-### 3. KNN
+### 3. <ins>KNN</ins>
 
 ---
 
@@ -106,7 +106,7 @@ Process finished with exit code 0
 ```
 ---
 
-### 5. LSTM
+### 5. <ins>LSTM</ins>
 
 ---
 
