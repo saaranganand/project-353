@@ -27,7 +27,7 @@ else:
 
     # Check if 'Adj Close' exists; if not, use 'Close' instead
     price_col = 'Adj Close' if 'Adj Close' in data.columns else 'Close'
-    
+
     # Calculate key metrics
     data["Daily Return"] = data[price_col].pct_change() * 100  # Daily return in %
     data["50-day MA"] = data[price_col].rolling(window=50).mean()  # 50-day moving average
@@ -36,7 +36,8 @@ else:
 
     # Show first few rows
     print(data.head())
+    print(data.tail())
+    print(data.shape)
 
-    # Save to CSV (optional)
     data.to_csv("data.csv")
     print(f"✅ Data saved as 'data.csv'")
