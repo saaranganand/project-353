@@ -33,4 +33,4 @@ def KNN_classifier(X_train, X_valid, y_train, y_valid):
     model = KNeighborsClassifier(**best_params).fit(X_train, y_train)
     y_pred = model.predict(X_valid)
 
-    return y_pred
+    return y_pred, model
