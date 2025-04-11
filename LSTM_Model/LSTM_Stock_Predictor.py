@@ -21,7 +21,7 @@ start_date = "2019-01-01"
 end_date = datetime.today().strftime('%Y-%m-%d')
 
 print("Downloading data for", ticker)
-data = yf.download(ticker, start=start_date, end=end_date, progress=False)
+data = pd.read_csv("../data.csv", skiprows=[1, 2], parse_dates=[0], index_col=0)
 if data.empty:
     raise ValueError(f"No data found for {ticker}. Check the ticker symbol and date range.")
 
