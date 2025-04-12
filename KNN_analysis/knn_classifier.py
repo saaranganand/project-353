@@ -24,12 +24,12 @@ def KNN_classifier(X_train, X_valid, y_train, y_valid):
                                     n_iter=448)
     knn_search = knn_search.fit(X_train, y_train)
     knn_results = knn_search.cv_results_
-    print(pd.DataFrame(knn_results))
+    # print(pd.DataFrame(knn_results))
     ss = StandardScaler()
     X_train = ss.fit_transform(X_train)
     X_valid = ss.transform(X_valid)
     best_params = knn_search.best_params_
-    print(best_params)
+    # print(best_params)
     model = KNeighborsClassifier(**best_params).fit(X_train, y_train)
     y_pred = model.predict(X_valid)
 
