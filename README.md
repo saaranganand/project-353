@@ -151,7 +151,7 @@ An output file called **LSTM_Future_Forcast.png** will been created in the same 
 This graph is a visual interpretation predicting the growth of the ETF throughout the year. 
 
 ```
----
+
 ---
 ## Overall Results/Findings:
 
