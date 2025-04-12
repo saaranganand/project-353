@@ -125,7 +125,7 @@ Process finished with exit code 0
 ---
 
 ### 5. <ins>LSTM (Long Short-Term Memory) Model </ins>
-
+---
 ### a. Running the `LSTM_Stock_Predictor.py` Script
 
 1. **Open your command line (terminal)** and navigate to the directory `..\project-353\LSTM_Model` containing the `LSTM_Stock_Predictor.py` file.
