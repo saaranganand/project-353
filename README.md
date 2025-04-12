@@ -73,6 +73,24 @@ To get the code up and running, follow these steps:
 
 ### 3. <ins>KNN</ins>
 
+Running these files will produce plots/figures in the `/plots/` directory
+
+To run the KNN classifier, simply type
+
+```sh
+python KNN_analysis/knn_classification_forecast.py
+```
+
+You should see that a file called `confusion_matrix.png` has been created
+
+To run the KNN regressor, type
+
+```sh
+python KNN_analysis/knn_regression_forecast.py
+```
+
+This will generate 2 plots: `knn_validation_plus_forcast.png` and `knn_validation.png`
+
 ---
 
 ### 4. <ins>Neural Net (MLP Regressor)</ins>
