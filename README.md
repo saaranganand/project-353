@@ -128,7 +128,7 @@ Process finished with exit code 0
 
 ### a. Running the `LSTM_Stock_Predictor.py` Script
 
-1. **Open your command line (terminal)** and navigate to the directory containing the `LSTM_Stock_Predictor.py` file.
+1. **Open your command line (terminal)** and navigate to the directory `..\project-353\LSTM_Model` containing the `LSTM_Stock_Predictor.py` file.
 
 2. **Run the script** with the following command:
    ```bash
@@ -140,13 +140,15 @@ The Terminal will give an output similar to this
 " Training the model...
 Epoch 1/50 "
 ```
-This indicates the model is being run and you will have to a couple minuites before the model is finished being trained
+This indicates the model is being run and you will have to wait a couple minuites before the model is finished excuting.
 
 The terminal will then output 
 ```
 "Forecasted price on 2025-12-31: $xx.xx CAD which is the prediction for VFV.TO at the end of the year.
 ```
+This output is the prediction for VFV.TO at the end of the year.
 An output file called `LSTM_Future_Forcast.png` will been created in the same directory.
+This graph is a visual interpretation predicting the growth of the ETF throughout the year. 
 ---
 
 ## Overall Results/Findings:
