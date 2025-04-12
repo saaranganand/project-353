@@ -153,55 +153,45 @@ This graph is a visual interpretation predicting the growth of the ETF throughou
 ```
 
 ---
-## Overall Results/Findings:
-Robust Predictive Performance:
+# Overall Results/Findings
 
-The implemented machine learning models—KNN, MLP Regressor, and LSTM—effectively captured market trends using historical price data from January 2019 to the present.
+- **Robust Predictive Performance:**
+  - The LSTM model achieved a validation RMSE of approximately **2.5 CAD** and forecasted an approximate **8% increase** in VFV.TO prices by December 2025.
+  - The MLP Regressor produced strong one-day-ahead predictions with an MAE as low as **1.79 CAD** and an RMSE of **2.41 CAD**, effectively capturing short-term market fluctuations.
+  - The KNN model, while less computationally intensive, provided a reliable baseline for trend prediction during stable market conditions.
 
-The LSTM model achieved a validation RMSE of about 2.5 CAD and forecasted an approximate 8% increase in VFV.TO prices by December 2025.
+- **Comprehensive Data Processing & Feature Engineering:**
+  - Collected over **1,200 trading days** of historical data from January 2019 to the present using yfinance.
+  - Engineered key technical indicators including daily returns, 50-day and 200-day moving averages, and 30-day rolling volatility to enhance model inputs.
+  - Handled missing values using forward-fill techniques and normalized data with a MinMaxScaler for optimized model performance.
 
-The MLP Regressor provided strong one-day-ahead predictions with an MAE as low as 1.79 CAD and an RMSE of 2.41 CAD, successfully mapping short-term fluctuations.
+- **Effective Model Architectures & Training Efficiency:**
+  - **LSTM Model:**
+    - Deployed a dual-layer LSTM architecture with 128 and 64 units along with 20% dropout layers, trained to convergence within **50 epochs** at a batch size of 32.
+    - Optimized training using EarlyStopping (5-epoch patience) and ReduceLROnPlateau (50% reduction factor), ensuring stable learning.
+  - **MLP and KNN Models:**
+    - Utilized hyperparameter optimization and cross-validation (via RandomizedSearchCV) to balance bias and variance, achieving improved performance and generalizability.
 
-Comprehensive Data Processing & Feature Engineering:
+- **Accurate Validation and Iterative Forecasting:**
+  - Validated predictions against market data from January to March 2025, with visualizations showing a close match between predicted and actual prices.
+  - Implemented an iterative forecasting strategy for all models to project daily stock prices up to December 31, 2025, maintaining continuity in trend prediction despite minor error accumulation.
 
-Utilized yfinance to gather over 1,200 trading days of data, ensuring data integrity with forward-fill techniques and normalization via MinMaxScaler.
+- **Actionable Visual Insights:**
+  - Detailed visualizations overlaid historical training data, validation performance, and future forecasts to convey model accuracy and market insights.
+  - Graphs highlighted key market phenomena (such as volatile periods during COVID-19 and tariff adjustments) that influenced model outputs.
 
-Engineered key features such as daily returns, 50-day and 200-day moving averages, and 30-day rolling volatility to enrich the predictive capability of the models.
+- **Identified Limitations & Future Enhancements:**
+  - **KNN:** Sensitive to extreme values and requires precise hyperparameter tuning; best suited for stable market scenarios.
+  - **MLP:** Demonstrated effective short-term predictions but showed iterative error compounding and a slight downward bias in multi-step forecasts due to simplified volatility assumptions.
+  - **LSTM:** Exhibited robust sequential data handling but may benefit from integrating external economic indicators to improve long-term forecasts in volatile conditions.
+  - Future improvements could include:
+    - Integrating macroeconomic and sentiment data.
+    - Exploring alternative deep learning architectures (e.g., GRU, Transformer).
+    - Enhancing uncertainty quantification techniques for more reliable prediction intervals.
 
-Effective Model Architectures & Training Efficiency:
-
-The LSTM model was architected with two layers (128 and 64 units) augmented by a 20% dropout rate, optimizing learning with callbacks (EarlyStopping with a 5-epoch patience and ReduceLROnPlateau with a 50% reduction factor) and converging within 50 epochs at a batch size of 32.
-
-The MLP and KNN models were also fine-tuned via hyperparameter optimization and cross-validation techniques, ensuring a balanced trade-off between bias and variance.
-
-Accurate Validation and Forecasting:
-
-Predictions were validated on data from January to March 2025, with visualizations clearly showing that predicted values closely tracked actual market prices.
-
-Iterative forecasting methods allowed each model to project daily prices until the end of 2025, with the MLP and LSTM models demonstrating smooth trend capture despite minor iterative drift.
-
-Actionable Visual Insights:
-
-Detailed plots overlaying historical training data, validation outcomes, and future forecasts provided transparent, data-driven insights.
-
-Visualizations were crucial for identifying specific market events (e.g., volatility during COVID-19 and the impact of recent tariffs) that influenced model performance.
-
-Identified Limitations & Considerations for Future Work:
-
-KNN: While computationally efficient, KNN is sensitive to extreme values and requires careful hyperparameter tuning to avoid overfitting.
-
-MLP: Although adept at short-term predictions, the iterative forecast exhibited error compounding and a slight downward bias due to simplified volatility assumptions.
-
-LSTM: Despite robust performance in sequential prediction, the LSTM model’s long-term forecasts are susceptible to unpredictability in volatile markets, partly due to the absence of external economic indicators.
-
-Future enhancements could include integrating additional macroeconomic data, employing alternative architectures (such as GRU or Transformer models), and developing methods to better quantify uncertainty.
-
-Collaborative Impact & Performance Improvement:
-
-Team contributions, including specialized efforts in deep learning and time-series analysis, resulted in up to a 15% performance improvement over initial baselines.
-
-Cross-functional collaboration enabled the integration of multiple modeling approaches, offering comprehensive insights into VFV.TO price movements and positioning the project as a replicable framework for further financial analytics.
-
+- **Collaborative Impact:**
+  - Team members contributed specialized expertise in deep learning, time-series analysis, and financial modeling, leading to a **15% overall performance improvement** compared to initial baselines.
+  - The collaborative efforts resulted in a scalable, replicable framework for forecasting VFV.TO ETF prices, providing valuable insights for data-driven financial decision-making.
 
 ---
 
