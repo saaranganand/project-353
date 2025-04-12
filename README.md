@@ -147,8 +147,10 @@ The terminal will then output
 "Forecasted price on 2025-12-31: $xx.xx CAD which is the prediction for VFV.TO at the end of the year.
 ```
 This output is the prediction for VFV.TO at the end of the year.
-An output file called `LSTM_Future_Forcast.png` will been created in the same directory.
+An output file called **LSTM_Future_Forcast.png** will been created in the same directory.
 This graph is a visual interpretation predicting the growth of the ETF throughout the year. 
+
+```
 ---
 
 ## Overall Results/Findings:
