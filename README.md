@@ -124,7 +124,7 @@ Process finished with exit code 0
 ```
 ---
 
-### 5. <ins>LSTM</ins>
+### 5. <ins>LSTM Long Short-Term Memory </ins>
 
 ---
 
