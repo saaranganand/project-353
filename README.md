@@ -151,9 +151,8 @@ An output file called **LSTM_Future_Forcast.png** will been created in the same 
 This graph is a visual interpretation predicting the growth of the ETF throughout the year. 
 
 ```
-
 ---
-# Overall Results/Findings
+### <ins> Overall Results/Findings </ins>
 
 - **Robust Predictive Performance:**
   - The LSTM model achieved a validation RMSE of approximately **2.5 CAD** and forecasted an approximate **8% increase** in VFV.TO prices by December 2025.
