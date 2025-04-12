@@ -124,8 +124,18 @@ Process finished with exit code 0
 ```
 ---
 
-### 5. <ins>LSTM Long Short-Term Memory </ins>
+### 5. <ins>LSTM (Long Short-Term Memory) Model </ins>
+**a.** 'LSTM_Stock_Predictor.py'
+python LSTM_Stock_Predictor.py
 
+The Terminal will give an output similar to this
+" Training the model...
+Epoch 1/50 " This indicates the model is being run and you will have to a couple minuites before the model is finished being trained
+
+The terminal will then output 
+"Forecasted price on 2025-12-31: $xx.xx CAD which is the prediction for VFV.TO at the end of the year.
+
+An output file called `LSTM_Future_Forcast.png` will been created in the same directory.
 ---
 
 ## Overall Results/Findings:
