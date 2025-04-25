@@ -41,11 +41,11 @@ To get the code up and running, follow these steps:
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/saaranganand/project-353.git
+   git clone https://github.com/saaranganand/stock-prediction.git
    ```
 2. Navigate to the repo
    ```sh
-   cd project-353
+   cd stock-prediction
    ```
 3. Install prerequisite packages
    ```sh
@@ -128,7 +128,7 @@ Process finished with exit code 0
 
 ### a. Running the `LSTM_Stock_Predictor.py` Script
 
-1. **Open your command line (terminal)** and navigate to the directory `..\project-353\LSTM_Model` containing the `LSTM_Stock_Predictor.py` file.
+1. **Open your command line (terminal)** and navigate to the directory `..\stock-prediction\LSTM_Model` containing the `LSTM_Stock_Predictor.py` file.
 
 2. **Run the script** with the following command:
    ```bash
@@ -195,8 +195,8 @@ This graph is a visual interpretation predicting the growth of the ETF throughou
 
 ### The Team:
 
-<a href="https://github.com/saaranganand/project-353/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=saaranganand/project-353" alt="contrib.rocks image" />
+<a href="https://github.com/saaranganand/stock-prediction/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=saaranganand/stock-prediction" alt="contrib.rocks image" />
 </a>
 
 * [Amardeep Sangha](https://github.com/Amar710/)
@@ -212,7 +212,7 @@ _Simon Fraser University - Spring 2025_
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/saaranganand/project-353.svg?style=for-the-badge
-[contributors-url]: https://github.com/saaranganand/project-353/graphs/contributors
-[stars-shield]: https://img.shields.io/github/stars/saaranganand/project-353.svg?style=for-the-badge
-[stars-url]: https://github.com/saaranganand/project-353/stargazers
+[contributors-shield]: https://img.shields.io/github/contributors/saaranganand/stock-prediction.svg?style=for-the-badge
+[contributors-url]: https://github.com/saaranganand/stock-prediction/graphs/contributors
+[stars-shield]: https://img.shields.io/github/stars/saaranganand/stock-prediction.svg?style=for-the-badge
+[stars-url]: https://github.com/saaranganand/stock-prediction/stargazers
